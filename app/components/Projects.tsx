@@ -1,109 +1,101 @@
 import Image from "next/image";
+import Link from "next/link";
 
-interface Project {
+interface ExperienceCard {
   id: number;
   title: string;
   description: string;
-  image: string;
-  link?: string;
+  icon: string;
+  thumbnail: string;
+  likeRatio: string;
+  activePlayers: string;
+  link: string;
 }
 
-const featuredProjects: Project[] = [
+const experienceCards: ExperienceCard[] = [
   {
     id: 1,
-    title: "NeuraWeb – Futuristic AI Website Landing Design",
-    description: "A sleek, dark-themed AI-powered landing page concept built in Figma. Designed for modern startups and futuristic digital products, it features glowing neon visuals, immersive UI, and a dynamic tone. The design encapsulates the cutting-edge possibilities of AI and tech, offering a glimpse into the future of online experiences for tech-forward companies.",
-    link: "https://www.figma.com/community/file/1441377868897233703/ai-website-landing-design",
-    image: "/projects/project-1.png",
+    title: "Steal Time And Flex",
+    description: "A competitive Roblox game where players steal time from others and flex their progress.",
+    icon: "/cards/stealtime-icon.png",
+    thumbnail: "/cards/stealtime-thumb.png",
+    likeRatio: "92%",
+    activePlayers: "3.2K",
+    link: "https://www.roblox.com/games/128787289215774/StealTime-Flex",
   },
   {
     id: 2,
-    title: "Apple Vision Pro – HR Software Design",
-    description: "A futuristic HR software concept designed for Apple Vision Pro, built in Figma to reimagine attendance, leave tracking, and employee experience - all in one immersive interface.",
-   link: "https://www.figma.com/community/file/1371824014208363481/apple-vision-pro-hr-software-design",
-    image: "/projects/project-2.png",
+    title: "Pull the Sword ⚔️ to be the King 👑",
+    description: "Pull powerful swords, grow stronger, and become the king.",
+    icon: "/cards/sword-icon.png",
+    thumbnail: "/cards/sword-thumb.png",
+    likeRatio: "95%",
+    activePlayers: "5.6K",
+    link: "https://www.roblox.com/games/76195731114162/Pull-the-Sword-to-be-the-King",
   },
 ];
 
-export default function Projects(): React.JSX.Element {
+export default function Experience(): React.JSX.Element {
   return (
-    <section id="lab" className="py-20 px-6">
-      <div className="container mx-auto max-w-7xl">
-        {featuredProjects.map((project, index) => {
-          const isEven = index % 2 === 1;
-          
-          return (
-            <div key={project.id} className="mb-20 last:mb-0">
-              <div className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
-                isEven ? "lg:grid-flow-dense" : ""
-              }`}>
-                {/* Text Content */}
-                <div className={`${isEven ? "lg:col-start-2" : ""}`}>
-                  <p className="text-purple-400 text-lg lg:text-xl mb-2 font-medium">
-                    Featured Project
-                  </p>
-                  <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-                    {project.title}
-                  </h3>
-                  {/* Description Card - extends over image */}
-                  <div className="relative z-10 mb-6">
-                    <div className={`bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-md rounded-2xl p-6 lg:p-8 border border-white/10 shadow-lg ${
-                      isEven ? "lg:ml-[-20%]" : "lg:w-[calc(100%+20%)]"
-                    }`}>
-                      <p className="text-white/90 text-base lg:text-lg leading-relaxed">
-                        {project.description}
-                      </p>
-                    </div>
-                  </div>
-                  {/* Website link */}
-                  {project.link && (
-                    <div className="flex gap-4">
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-white hover:text-purple-400 transition-colors duration-200"
-                        aria-label="Visit project website"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="w-6 h-6"
-                        >
-                          <circle cx="12" cy="12" r="10" />
-                          <line x1="2" y1="12" x2="22" y2="12" />
-                          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                        </svg>
-                      </a>
-                    </div>
-                  )}
-                </div>
+    <section id="experience" className="py-20 px-6">
+      <div className="container mx-auto max-w-6xl">
+        <h2 className="text-4xl lg:text-5xl font-bold text-white mb-12 text-center">
+          Roblox Projects
+        </h2>
 
-                {/* Image Content */}
-                <div className={`${isEven ? "lg:col-start-1 lg:row-start-1" : ""}`}>
-                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 p-2 lg:p-3 shadow-2xl">
-                    <div className="relative w-full h-full rounded-lg overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="object-cover"
-                      />
-                    </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {experienceCards.map((card) => (
+            <div
+              key={card.id}
+              className="bg-gradient-to-r from-slate-950 via-purple-950 to-slate-950 backdrop-blur-sm rounded-xl p-6 border-t-3 border-purple-700 hover:shadow-2xl hover:shadow-purple-900"
+            >
+              <div className="flex gap-4">
+                <Image
+                  src={card.icon}
+                  alt={card.title}
+                  width={90}
+                  height={90}
+                  className="object-contain"
+                />
+
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    {card.title}
+                  </h3>
+
+                  <p className="text-white/70 text-sm mb-3">
+                    {card.description}
+                  </p>
+
+                  <div className="flex gap-4 text-sm text-white/80 mb-4">
+                    <span>⭐ {card.likeRatio}</span>
+                    <span>🟢 {card.activePlayers}</span>
                   </div>
+
+                  <Link
+                    href={card.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-purple-400 hover:text-purple-300 font-medium text-sm transition-colors"
+                  >
+                    PLAY ON ROBLOX →
+                  </Link>
                 </div>
               </div>
+
+              <div className="mt-5">
+                <Image
+                  src={card.thumbnail}
+                  alt={card.title}
+                  width={600}
+                  height={300}
+                  className="rounded-lg object-cover"
+                />
+              </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </section>
   );
 }
-
